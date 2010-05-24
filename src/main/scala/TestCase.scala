@@ -35,7 +35,7 @@ class TestCase (seed: Long) {
     new Rect (i, Point (x, y), Point (dx, dy), random.nextDouble ())
   }
 
-  for (i <- 0 until random.nextInt (maxRect))
+  for (i <- 0 to random.nextInt (maxRect-1))
     rects push newRect (i)
 
   val totalGamma = rects map (_.gamma) sum
@@ -47,7 +47,8 @@ class TestCase (seed: Long) {
       sum += rect.gamma
       if (sum >= s) return rect
     }
-    throw new AssertionError
+
+    throw new AssertionError (sum, s)
   }
 
   case class RectPoint (pt: Point, rect: Rect)
