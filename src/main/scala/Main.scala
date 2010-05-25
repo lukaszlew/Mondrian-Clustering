@@ -26,11 +26,14 @@ object Main {
       val process = new Process (program)
       val judge = new Judge (testCase, process)
       process.close ()
-      if (doVis) new Visualizer (testCase)
+      if (doVis) {
+        new Visualizer (testCase)
+        print ("Points per rectangle: ")
+        println (testCase.pointsPerRect mkString " ")
+      }
       println ("%d %f" format (seed, judge.score))
       totalScore += judge.score
       n += 1
-      // testCase.pointsPerRect foreach println
     }
     println ("Average score = %f" format (totalScore / n))
   }
