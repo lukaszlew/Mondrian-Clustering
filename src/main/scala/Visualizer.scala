@@ -13,11 +13,11 @@ class Visualizer (tastCase : TestCase) extends MainFrame {
       g.setBackground (java.awt.Color.black)
       g.clearRect(0,0,size.width, size.height)
 
-      for (rp <- tastCase.points) {
-        val x = rp.pt.x * size.width.toDouble toInt
-        val y = rp.pt.y * size.height.toDouble toInt
+      for (rectSample <- tastCase.points) {
+        val x = rectSample.sample.x * size.width.toDouble toInt
+        val y = rectSample.sample.y * size.height.toDouble toInt
 
-        g.setColor (colors (rp.rect.id % colors.size))
+        g.setColor (colors (rectSample.rect.id % colors.size))
         g.fillRect (x, y, 2, 2)
       }
     }

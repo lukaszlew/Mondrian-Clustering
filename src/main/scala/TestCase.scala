@@ -1,70 +1,40 @@
 import java.security.SecureRandom
 
-// -----------------------------------------------------------------------------
-
-case class Point (x: Double, y: Double)
-
-class Rect (i: Int, p: Point, d: Point, g: Double) {
-  val id = i
-  val gamma = g
-
-  def sample (rand: SecureRandom): Point = {
-    Point(x = p.x + rand.nextDouble () * d.x,
-          y = p.y + rand.nextDouble () * d.y)
-  }
-}
-
-// -----------------------------------------------------------------------------
-
 class TestCase (seed: Long) {
-  import scala.collection.mutable.Stack
-
-  val maxRect = 10
-  val maxPoints = 10000
+  case class Point (x: Double, y: Double)
+  case class Rect (id: Int, origin: Point, dim: Point, gamma: Double)
+  case class RectSample (rect: Rect, sample: Point)
 
   val random = SecureRandom.getInstance ("SHA1PRNG")
   random.setSeed (seed)
 
-  val rects = Stack[Rect] ()
-  
-  def newRect (i : Int): Rect = {
+  val rectCount  = 3
+  val pointCount = 10000
+
+  val rects = List.tabulate[Rect] (rectCount) (nextRect _)
+  val totalGamma = rects map (_.gamma) sum
+  val points = List.tabulate[RectSample] (pointCount) (nextRectSample)
+
+  def nextRect (id : Int): Rect = {
     val dx = random.nextDouble ()
     val dy = random.nextDouble ()
     val x = random.nextDouble () * (1.0 - dx)
     val y = random.nextDouble () * (1.0 - dy)
-    new Rect (i, Point (x, y), Point (dx, dy), random.nextDouble ())
+    new Rect (id, Point (x, y), Point (dx, dy), random.nextDouble ())
   }
-
-  for (i <- 0 to random.nextInt (maxRect-1))
-    rects push newRect (i)
-
-  val totalGamma = rects map (_.gamma) sum
   
-  def sampleRect () : Rect = {
+  def nextRectSample (i : Int) : RectSample = {
     val s = random.nextDouble () * totalGamma
     var sum = 0.0
     for (rect <- rects) {
       sum += rect.gamma
-      if (sum >= s) return rect
+      if (sum >= s) {
+        val sample = 
+          Point (rect.origin.x + random.nextDouble () * rect.dim.x,
+                 rect.origin.y + random.nextDouble () * rect.dim.y)
+        return RectSample (rect, sample)
+      }
     }
-
-    throw new AssertionError (sum, s)
-  }
-
-  case class RectPoint (pt: Point, rect: Rect)
-
-  def sample () = {
-    val rect = sampleRect()
-    RectPoint (rect.sample(random), rect)
-  }
-
-  val points = List.tabulate[RectPoint] (random nextInt maxPoints) ((_: Int) => sample())
-
-  def saveToScv (fileName: String) {
-    val file = ()
-    for (point <- points) {
-      //file . write ...
-    }
-    // file. close
+    throw new AssertionError
   }
 }
