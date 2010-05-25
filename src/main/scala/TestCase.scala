@@ -1,11 +1,12 @@
 import java.security.SecureRandom
 
-class TestCase (seed: Long) {
+class TestCase (seedInit : Long) {
   case class Point (x: Double, y: Double)
   case class Rect (id: Int, origin: Point, dim: Point, gamma: Double)
   case class RectSample (rect: Rect, sample: Point)
 
   val random = SecureRandom.getInstance ("SHA1PRNG")
+  val seed = seedInit
   random.setSeed (seed)
 
   val rectCount  = 3

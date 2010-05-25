@@ -1,7 +1,7 @@
 import scala.swing.{ MainFrame, Panel, Dimension, Graphics2D }
 
-class Visualizer (tastCase : TestCase) extends MainFrame {
-  title = "Modrian Clustering Visualizer"
+class Visualizer (testCase : TestCase) extends MainFrame {
+  title = "Modrian Clustering Visualizer (seed = %d)" format testCase.seed
 
   contents = new Panel {
     val colors = {
@@ -13,7 +13,7 @@ class Visualizer (tastCase : TestCase) extends MainFrame {
       g.setBackground (java.awt.Color.black)
       g.clearRect(0,0,size.width, size.height)
 
-      for (rectSample <- tastCase.points) {
+      for (rectSample <- testCase.points) {
         val x = rectSample.sample.x * size.width.toDouble toInt
         val y = rectSample.sample.y * size.height.toDouble toInt
 

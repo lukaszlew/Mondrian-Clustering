@@ -1,12 +1,13 @@
 <html><head> 
  
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8"> 
-<title>Mondrain clustering</title> 
-</head><body id="" onload="" topmargin="50" leftmargin="100" rightmargin="100" bottommargin="50" bgcolor="#d0d0b0"> 
-
-<h1 align="center"> Mondrain clustering </h1>
+<title> Mondrain clusterin </title> 
+</head><body id="" onload="" topmargin="50" leftmargin="100" rightmargin="100" bottommargin="50" bgcolor="#94a3a0"> 
+<font size=4>
+<h1 align="center"> Mondrain clustering  </h1>
 <h2> Zadanie </h2>
 <p>
+<img align="right" src="img/seed57small.png">
 Dana jest seria punktów w kwadracie jednostkowym.
 Punkty wygenerowane są z jednego z trzech prostokątów.
 Twoim zadaniem jest odgadnięcie z którego z prostokątów pochodzi każdy punkt.
@@ -29,13 +30,13 @@ Następnie losowany jest punkt z wewnątrz - współrzędne px i py losowane są
 
 <h2> Ocena </h2>
 <p>
-Oceną serii jest liczba tritów (jednostka informacji, jeden trit to log_2(3) bitów), które twój program wyłowi z danych ponad rozwiązaniem 
+Oceną serii jest liczba tritów (jednostka informacji, jeden trit to log2(3) bitów), które twój program wyłowi z danych ponad rozwiązaniem 
 trywialnym (zwracającym równe prawdopodobieństwa dla każdego prostokąta).
 <p><p> 
-Jeżeli danego punktu punktów twój program zwrócił prawdopodobieństwa (po znormalizowaniu): a, b, c, podczas 
-gdy punkt ten pochodził z prostokąta A to za ten punkt dostaniesz log_3 (a) + 1 punktów.
-Jeżeli pochodził z prostokąta B to dostaniesz log_3 (b) + 1 punktów. Itd.
-Oceną serii jest to suma ocen 1000 pojedyńczych punktów.
+Jeżeli dla danego punktu twój program zwrócił prawdopodobieństwa (po znormalizowaniu): a, b, c, podczas 
+gdy punkt ten pochodził z prostokąta A, to za ten punkt dostaniesz log3 (a) + 1 punktów.
+Jeżeli pochodził z prostokąta B to dostaniesz log3 (b) + 1 punktów. Itd.
+Oceną serii jest to suma ocen 1000 pojedynczych punktów.
 <p><p>
 Zostanie ocenionych wszystkich 3! = 6 możliwych interpretacji odpowiedzi programu i jako punktację serii przyjmiemy najlepszą ocenę. 
 <p><p>
@@ -44,8 +45,8 @@ Ostateczna punktacja programu jest średnią z punktacji wielu serii.
 
 <h2> Protokół </h2>
 <p>
-Program dostanie współrzędnę punktu oddzielone spacją.
-Następnie powinien wypisać trzy nieujemne liczby oddzielone pojedyńczą spacją.
+Program dostanie współrzędne punktu oddzielone spacją.
+Następnie powinien wypisać trzy nieujemne liczby oddzielone pojedynczą spacją.
 Po czym proces się powtórzy.
 Program powinien zakończyć działanie kiedy napotka EOF (strumień zostanie zamknięty) (Ctrl-D pod Linuksem, chyba Ctrl-Z pod Windowsem).
 <p>
