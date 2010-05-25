@@ -9,11 +9,12 @@ class TestCase (seed: Long) {
   random.setSeed (seed)
 
   val rectCount  = 3
-  val pointCount = 10000
+  val pointCount = 1000
 
   val rects = List.tabulate[Rect] (rectCount) (nextRect _)
   val totalGamma = rects map (_.gamma) sum
   val points = List.tabulate[RectSample] (pointCount) (nextRectSample)
+  val pointsPerRect = Array.tabulate[Int] (rectCount) ((id: Int) => points count (_.rect.id == id))
 
   def nextRect (id : Int): Rect = {
     val dx = random.nextDouble ()

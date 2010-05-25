@@ -20,12 +20,6 @@ object Permutation {
 }
 
 
-class Process {
-  def write (s: String) {}
-  def readLine () : String = { "2 2 2" }
-}
-
-
 class Judge (testCase: TestCase, process: Process) {
 
   private case class AnswerPoint (rectSample : testCase.RectSample,
