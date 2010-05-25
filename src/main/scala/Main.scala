@@ -7,5 +7,7 @@ object Main {
 
     val testCase = new TestCase (args(0).toLong)
     val visualiser = new Visualizer (testCase)
+    val judge = new Judge (testCase, new Process)
+    println (judge.score)
   }
 }
