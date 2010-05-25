@@ -1,0 +1,72 @@
+<html><head> 
+ 
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8"> 
+<title>Mondrain clustering</title> 
+</head><body id="" onload="" topmargin="50" leftmargin="100" rightmargin="100" bottommargin="50" bgcolor="#d0d0b0"> 
+
+<h1 align="center"> Mondrain clustering </h1>
+<h2> Zadanie </h2>
+<p>
+Dana jest seria punktów w kwadracie jednostkowym.
+Punkty wygenerowane są z jednego z trzech prostokątów.
+Twoim zadaniem jest odgadnięcie z którego z prostokątów pochodzi każdy punkt.
+<p><p>
+Każde zgadnięcie musi nastąpić od razu po otrzymaniu współrzędnych punktu przed otrzymaniem współrzędnych następnego punktu.
+Zgadnięcie polega na wypisaniu trzech liczb proporcjonalnych (zostaną one podzielone przez ich sumę) do prawdopodobieństw pochodzenia z każdego z prostokątów.
+<p>
+
+<h2> Dane </h2>
+<p>
+Każdy z prostokątów jest losowany niezależnie. Wszystkie liczby losowane są z jednorodnych rozkładów prawdopodobieństwa.
+Najpierw losowane są szerokość(w) i wysokość(h) z przedziału [0,1].
+Następnie losowane są współrzędne x i y lewego górnego rogu (układ współrzędnych z odwróconą osią OY) z przedziałów [0, 1-w] i [0, 1-h].
+Losowana jest także liczba p z przedziału [0, 1]. Liczby p wszystkich prostokątów zostaną znormalizowane (podzielone przez ich sumę).
+<p><p>
+Każdy z punktów w serii jest losowany niezależnie i w taki sam sposób.
+Najpierw losowany jest prostokąt z prawdopodobieństwem p (znormalizowane). 
+Następnie losowany jest punkt z wewnątrz - współrzędne px i py losowane są z przedziałów [x, x+w], [y, y+h].
+<p>
+
+<h2> Ocena </h2>
+<p>
+Oceną serii jest liczba tritów (jednostka informacji, jeden trit to log_2(3) bitów), które twój program wyłowi z danych ponad rozwiązaniem 
+trywialnym (zwracającym równe prawdopodobieństwa dla każdego prostokąta).
+<p><p> 
+Jeżeli danego punktu punktów twój program zwrócił prawdopodobieństwa (po znormalizowaniu): a, b, c, podczas 
+gdy punkt ten pochodził z prostokąta A to za ten punkt dostaniesz log_3 (a) + 1 punktów.
+Jeżeli pochodził z prostokąta B to dostaniesz log_3 (b) + 1 punktów. Itd.
+Oceną serii jest to suma ocen 1000 pojedyńczych punktów.
+<p><p>
+Zostanie ocenionych wszystkich 3! = 6 możliwych interpretacji odpowiedzi programu i jako punktację serii przyjmiemy najlepszą ocenę. 
+<p><p>
+Ostateczna punktacja programu jest średnią z punktacji wielu serii.
+<p>
+
+<h2> Protokół </h2>
+<p>
+Program dostanie współrzędnę punktu oddzielone spacją.
+Następnie powinien wypisać trzy nieujemne liczby oddzielone pojedyńczą spacją.
+Po czym proces się powtórzy.
+Program powinien zakończyć działanie kiedy napotka EOF (strumień zostanie zamknięty) (Ctrl-D pod Linuksem, chyba Ctrl-Z pod Windowsem).
+<p>
+
+<h2> Limity </h2>
+<p>
+Mimo że w tym zadaniu oceniane będzie jedynie pierwszych 1000 punktów to twój program powinien być w stanie obsłużyć 2^16 punktów.
+<p><p>
+Średni czas klasyfikacji jednego punktu powinien wynosić nie więcej niż 2 ms na maszynie students. 
+Jeżeli czas działania programu na danej 1000 punktowej serii przekroczy 2 sekundy, program dostanie za nią zero punktów.
+<p>
+
+<h2> Wizualizator </h2>
+
+<p>Wizualizator można znaleźć <a href="http://github.com/lukaszlew/Mondrian-Clustering">tutaj</a>.
+
+lub używając komendy:
+
+<pre>git clone https://lukaszlew@github.com/lukaszlew/Mondrian-Clustering.git</pre>
+
+Przykład programu możemy znaleźć w katalogu example_solution.
+
+</body></html> 
+
