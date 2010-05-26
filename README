@@ -1,0 +1,23 @@
+# Get visualizer
+git clone git://github.com/lukaszlew/Mondrian-Clustering.git
+cd Mondrian-Clustering
+
+# Compile example_solution/dummy
+cd example_solution
+make
+cd ..
+
+# Setup simple build tool for visualizer
+wget http://simple-build-tool.googlecode.com/files/sbt-launch-0.7.4.jar -O sbt-launch.jar
+./sbt update
+
+# Test dummy without visualization on seeds 1 to 10
+./sbt "run example_solution/dummy 1 10 novis"
+
+# Visualize seeds 4 to 6
+./sbt "run example_solution/dummy 4 6 vis"
+
+# Optional: package visualizer into stand-alone jar file.
+./sbt package-static
+mv target/scala_2.8.0.RC2/mondrian-clustering_2.8.0.RC2-static-0.1.jar ./vis.jar
+java -jar ./vis.jar example_solution/dummy 1 10 novis
