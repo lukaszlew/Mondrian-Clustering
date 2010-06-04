@@ -22,7 +22,7 @@ object Main {
     var visualize = false
     var seedFrom = 0L
     var seedCount = 1
-    var csvFile = "results.csv"
+    var csvFile = ""
     var login = "ForgotToSetLogin"
 
     var i = 0
@@ -79,6 +79,7 @@ object Main {
 
     println ("Average score = %f" format (totalScore / seedCount))
 
+    if (csvFile == "") csvFile = "results-" + login + ".csv"
     var csv = new java.io.PrintStream (new java.io.FileOutputStream (csvFile))
     csv.println ("# %s" format (args mkString " "))
     csv.println ((seedFrom until (seedFrom + seedCount) map ("seed%d" format _) mkString ", ") + ", login")
